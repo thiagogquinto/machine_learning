@@ -158,10 +158,10 @@ def do_cv(classificador, X, y, cv_splits, param_cv_folds=None, n_jobs=8, scale=F
                                                       n_jobs=n_jobs, cv_folds=param_cv_folds, params=params)
         pred = ad.predict(X_teste)
 
-        if len(set(y_treino)) > 2 and classificador == 'rf' or classificador == 'knn':
+        if len(set(y_treino)) > 2:
             f1 = f1_score(y_teste, pred, average='macro')
         else:
-            f1 = accuracy_score(y_teste, pred)
+            f1 = f1_score(y_teste, pred)
         f1s.append(f1)
         
         pgb.update(1)
